@@ -1,6 +1,6 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        HashMap<Integer,Integer> map=new HashMap<>();
+        
         int n=nums.length;
         int count=0;
         int element=0;
