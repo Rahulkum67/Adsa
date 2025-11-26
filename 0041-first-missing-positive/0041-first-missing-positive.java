@@ -5,9 +5,7 @@ class Solution {
             h.add(nums[i]);
         }
         for(int i=1;i<=nums.length;i++){
-            if(h.contains(i)){
-                continue;
-            }else{
+            if(!h.contains(i)){
                 return i;
             }
         }
