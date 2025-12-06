@@ -1,17 +1,14 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        // Negative numbers OR numbers ending with 0 (except 0) cannot be palindrome
-        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
-
-        int rev = 0;
-
-        // Reverse only HALF of the number
-        while (x > rev) {
-            rev = rev * 10 + x % 10;
-            x /= 10;
+        if(x<0) return false;
+        int n=x;
+        int an=0;
+        
+        while(n>0){
+            an=(an*10)+(n%10);
+            n=n/10;
         }
-
-        // For odd digits, remove the middle digit from rev
-        return x == rev || x == rev / 10;
+        return an==x;
+        
     }
 }
