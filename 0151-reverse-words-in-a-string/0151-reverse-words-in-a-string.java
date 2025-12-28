@@ -1,11 +1,16 @@
 class Solution {
     public String reverseWords(String s) {
         String[] word=s.trim().split("\\s+");
-        StringBuilder ans=new StringBuilder();
-        for(int i=word.length-1;i>=0;i--){
-            ans.append(word[i]);
-            if(i!=0) ans.append(" ");
+        int i = 0, j = word.length - 1;
+        while (i < j) {
+            String temp = word[i];
+            word[i] = word[j];
+            word[j] = temp;
+            i++;
+            j--;
         }
-        return ans.toString();
+
+        // Join words with single space
+        return String.join(" ", word);
     }
 }
