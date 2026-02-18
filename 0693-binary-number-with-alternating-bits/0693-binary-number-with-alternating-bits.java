@@ -2,7 +2,7 @@ class Solution {
     public boolean hasAlternatingBits(int n) {
         String binarys=Integer.toBinaryString(n);
         if(binarys.length()==2){
-            if(binarys.charAt(0)==binarys.charAt(0)){
+            if(binarys.charAt(0)==binarys.charAt(1)){
                 return false;
             }
         }
