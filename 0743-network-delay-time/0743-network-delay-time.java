@@ -1,4 +1,5 @@
 class Solution {
+    /*
     class Pair{
         int node;
         int dist;
@@ -6,8 +7,9 @@ class Solution {
             this.node=node;
             this.dist=dist;
         }
-    }
+    }*/
     public int networkDelayTime(int[][] times, int n, int k) {
+        /*
         ArrayList<ArrayList<Pair>> adj=new ArrayList<>();
         PriorityQueue<Pair> pq=new PriorityQueue<>((a,b) -> a.dist - b.dist);
         for(int i=0;i<n;i++){
@@ -27,7 +29,7 @@ class Solution {
         while(!pq.isEmpty()){
             Pair curr=pq.poll();
             int cpv=curr.node;
-            int cpd=curr.node;
+            
             for(int i=0;i<adj.get(cpv).size();i++){
                 Pair nighbour=adj.get(cpv).get(i);
                 int nv=nighbour.node;
@@ -44,6 +46,29 @@ class Solution {
                 return -1;
             }
             max=Math.max(max,ans[i]);
+
+        }
+        return max;
+        */
+        int[] dist=new int[n+1];
+        Arrays.fill(dist,100000000);
+        dist[k-1]=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<times.length;j++){
+                int from=times[j][0]-1;
+                int to=times[j][1]-1;
+                int weight=times[j][2];
+                if(dist[from] != 100000000 && dist[from]+weight < dist[to]){
+                    dist[to]=dist[from]+weight;
+                }
+            }
+        }
+        int max=0;
+        for(int i=0;i<n;i++){
+            if(dist[i]==100000000){
+                return -1;
+            }
+            max=Math.max(max,dist[i]);
 
         }
         return max;
