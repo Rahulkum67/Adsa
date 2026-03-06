@@ -3,10 +3,9 @@ class Solution {
         long even=0;
         long odd=0;
         for(int num:nums){
-            long neweven=Math.max(even,odd+num);
-            long newodd=Math.max(odd,even-num);
-            even=neweven;
-            odd=newodd;
+            even=Math.max(even,odd+num);
+            odd=Math.max(odd,even-num);
+            
         }
         return even;
     }
