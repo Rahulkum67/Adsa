@@ -8,9 +8,9 @@ class Solution {
         return dp[i][j]=Math.min(down,diag);
     }
     public int minimumTotal(List<List<Integer>> triangle) {
-        int n=triangle.size();
+        
         Integer dp[][]=new Integer[n][n];
-        int ans=solve(0,0,n,dp,triangle);
+        int ans=solve(0,0,triangle.size(),dp,triangle);
         return ans;
     }
 }
