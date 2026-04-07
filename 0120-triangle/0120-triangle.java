@@ -9,7 +9,7 @@ class Solution {
     }
     public int minimumTotal(List<List<Integer>> triangle) {
         
-        Integer dp[][]=new Integer[n][n];
+        Integer dp[][]=new Integer[triangle.size()][triangle.size()];
         int ans=solve(0,0,triangle.size(),dp,triangle);
         return ans;
     }
