@@ -1,9 +1,7 @@
 class Solution {
     int solve(int i,int j,int n,int m,Integer dp[][],int[][] grid){
         if(i==n-1 && j==m-1) return grid[i][j];
-        if(i>=n || j>=m){
-            return Integer.MAX_VALUE;
-        }
+        if(i>=n || j>=m) return Integer.MAX_VALUE;
         if(dp[i][j] != null) return dp[i][j];
         int rightway=solve(i,j+1,n,m,dp,grid);
         int downway=solve(i+1,j,n,m,dp,grid);
