@@ -3,7 +3,7 @@ class Solution {
         if(i>=n || j>=m ||i<0 || j<0) return Integer.MAX_VALUE;
         if(i==n-1) return arr[i][j];
 
-        if(i>=n || j>=m ||i<0 || j<0) return Integer.MAX_VALUE;
+        
         if(dp[i][j] != null) return dp[i][j];
         int left=solve(i+1,j-1,n,m,arr,dp);
         int right=solve(i+1,j,n,m,arr,dp);
