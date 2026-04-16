@@ -3,13 +3,8 @@ class Solution {
         int start = 0, end = 0;
 
         for (int i = 0; i < s.length(); i++) {
-
-            // odd length: L=i, R=i
             int len1 = expand(s, i, i);
-
-            // even length: L=i, R=i+1
             int len2 = expand(s, i, i + 1);
-
             int len = Math.max(len1, len2);
 
             if (len > end - start + 1) {
