@@ -1,16 +1,26 @@
 class Solution {
-    public int searchInsert(int[] nums, int target) {
-        int st=0 ,end=nums.length-1;
-        while(st <=end){
-            int mid=st+(end-st)/2;
-            if(nums[mid]==target){
-                return mid;
-            }else if(nums[mid]>target){
+    static int binarysearch(int[] arr,int a){
+        int n=arr.length;
+        int st=0;
+        int end=n-1;
+        int ans=n;
+        while(st<=end){
+            int mid=(st+end)/2;
+            if(arr[mid]>=a){
+                ans=mid;
                 end=mid-1;
             }else{
                 st=mid+1;
             }
+            
         }
-        return st;
+        return ans;
     }
+    public int searchInsert(int[] nums, int target){
+        int a=binarysearch(nums,target);   
+        return a;
+
+    }    
+    
+    
 }
