@@ -13,23 +13,34 @@ class Solution {
         return (i>=0 && j>=0 && i<n && j<m);
     }
     public void bfs(int st,int end,int n,int m,boolean[][] isvisited,Queue<Pair> q,int[][] grid){
-        q.add(new Pair(st,end));
-        isvisited[st][end]=true;
-        while(!q.isEmpty()){
-            Pair curr=q.poll();
-            int cpr=curr.row;
-            int cpc=curr.col;
-            for(int i=0;i<4;i++){
-                int nr=cpr+rd[i];
-                int nc=cpc+cd[i];
-                if(isvalid(nr,nc,n,m)){
-                    if(isvisited[nr][nc]==false && grid[nr][nc]==1){
-                      isvisited[nr][nc]=true;
-                      q.add(new Pair(nr,nc));
-                    }
-                }
-            }
+        // q.add(new Pair(st,end));
+        // isvisited[st][end]=true;
+        // while(!q.isEmpty()){
+        //     Pair curr=q.poll();
+        //     int cpr=curr.row;
+        //     int cpc=curr.col;
+        //     for(int i=0;i<4;i++){
+        //         int nr=cpr+rd[i];
+        //         int nc=cpc+cd[i];
+        //         if(isvalid(nr,nc,n,m)){
+        //             if(isvisited[nr][nc]==false && grid[nr][nc]==1){
+        //               isvisited[nr][nc]=true;
+        //               q.add(new Pair(nr,nc));
+        //             }
+        //         }
+        //     }
+        // }
+        if(st <0 || end <0 || st>=n || end>=m){
+            return;
         }
+        if (grid[st][end] == 0 || isvisited[st][end]) {
+            return;
+        }
+        isvisited[st][end]=true;
+        bfs(st+1,end,n,m,isvisited,q,grid);
+        bfs(st-1,end,n,m,isvisited,q,grid);
+        bfs(st,end+1,n,m,isvisited,q,grid);
+        bfs(st,end-1,n,m,isvisited,q,grid);
     }
     public int numEnclaves(int[][] grid) {
         int n=grid.length;
