@@ -42,8 +42,8 @@ class Solution {
             }
         }
         for(int i=0;i<m;i++){
-            if(board[m-1][i]=='O'&& isvisted[n-1][i]==false){
-                bfs(board,m-1,i,isvisted,n,m);
+            if(board[n-1][i]=='O'&& isvisted[n-1][i]==false){
+                bfs(board,n-1,i,isvisted,n,m);
             }
         }
         for(int i=0;i<n;i++){
@@ -52,8 +52,8 @@ class Solution {
             }
         }
         for(int i=0;i<n;i++){
-            if(board[i][n-1]=='O'&& isvisted[i][n-1]==false){
-                bfs(board,i,n-1,isvisted,n,m);
+            if(board[i][m-1]=='O'&& isvisted[i][m-1]==false){
+                bfs(board,i,m-1,isvisted,n,m);
             }
         }
         for(int i=0;i<n;i++){
