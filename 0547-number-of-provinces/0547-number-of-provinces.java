@@ -1,15 +1,14 @@
-
 class Solution {
-    public void bfs(int start,boolean isvist[],ArrayList<ArrayList<Integer>> adj){
+    void bfs(int st,boolean[] isvis,ArrayList<ArrayList<Integer>> adj){
         Queue<Integer> q=new LinkedList<>();
-        q.add(start);
-        isvist[start]=true;
+        q.add(st);
+        isvis[st]=true;
         while(!q.isEmpty()){
             int curr=q.poll();
             for(int i=0;i<adj.get(curr).size();i++){
                 int nighbour=adj.get(curr).get(i);
-                if(isvist[nighbour]==false){
-                    isvist[nighbour]= true;
+                if(isvis[nighbour]==false){
+                    isvis[nighbour]=true;
                     q.add(nighbour);
                 }
             }
@@ -24,23 +23,18 @@ class Solution {
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 if(isConnected[i][j]==1){
-                int from=i;
-                int to = j;
-                adj.get(from).add(to);
+                    adj.get(i).add(j);
                 }
-                
             }
         }
         int count=0;
-        Queue<Integer> q=new LinkedList<>();
-        boolean isvist[]=new boolean[n];
+        boolean[] isvis=new boolean[n];
+        
         for(int i=0;i<n;i++){
-            if(isvist[i]==false){
-                bfs(i,isvist,adj);
+            if(isvis[i]==false){
+                bfs(i,isvis,adj);
                 count++;
             }
-            
-            
         }
         return count;
     }
