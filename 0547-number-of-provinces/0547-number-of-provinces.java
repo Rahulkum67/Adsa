@@ -1,4 +1,13 @@
 class Solution {
+    void dfs(int st,boolean[] isvis,ArrayList<ArrayList<Integer>> adj){
+        isvis[st]=true;
+        for(int i=0;i<adj.get(st).size();i++){
+            int nighbour=adj.get(st).get(i);
+            if(isvis[nighbour]==false){
+                dfs(nighbour,isvis,adj);
+            }
+        }
+    }
     void bfs(int st,boolean[] isvis,ArrayList<ArrayList<Integer>> adj){
         Queue<Integer> q=new LinkedList<>();
         q.add(st);
@@ -32,7 +41,7 @@ class Solution {
         
         for(int i=0;i<n;i++){
             if(isvis[i]==false){
-                bfs(i,isvis,adj);
+                dfs(i,isvis,adj);
                 count++;
             }
         }
