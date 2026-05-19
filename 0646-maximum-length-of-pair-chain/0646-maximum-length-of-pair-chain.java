@@ -27,19 +27,17 @@ class Solution {
         //     max=Math.max(count,max);
         // }
         // return max;
-        // int count = 1;
-        // int end = pairs[0][1];
-
-        // for (int i = 1; i < pairs.length; i++) {
-
-        //     if (pairs[i][0] > end) {
-        //         count++;
-        //         end = pairs[i][1];
-        //     }
-        // }
-
-        // return count;
-        Integer[][] dp=new Integer[n+1][n+1];
-        return solve(0,-1,pairs,dp);
+        int count =0;
+        // Arrays.sort(pairs, (a,b)-> Integer.compare(a[1],b[1]));
+        int pre= Integer.MIN_VALUE;
+        for(var p1: pairs){
+            if(pre< p1[0]){
+                count++;
+                pre= p1[1];
+            }
+        }
+        return count;
+        // Integer[][] dp=new Integer[n+1][n+1];
+        // return solve(0,-1,pairs,dp);
     }
 }
