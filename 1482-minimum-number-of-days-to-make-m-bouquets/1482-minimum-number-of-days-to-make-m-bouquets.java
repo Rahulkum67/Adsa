@@ -16,6 +16,8 @@ class Solution {
         return (bqt>=m);
     }
     public int minDays(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        if ((long)k*m>n) return -1;
         int st=0;
         int end=0;
         for(int i=0;i<bloomDay.length;i++){
