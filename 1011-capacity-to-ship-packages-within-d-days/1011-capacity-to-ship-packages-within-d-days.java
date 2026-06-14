@@ -20,7 +20,7 @@ class Solution {
         }
         int st=min;
         int end=count;
-        int ans=count;
+        
         while(st<=end){
             int mid=st+(end-st)/2;
             if(dayss(weights,mid,days)){
