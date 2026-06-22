@@ -5,12 +5,15 @@ class Solution {
         int left=0;
         int ans=0;
         for(int i=0;i<s.length();i++){
-            while(has.containsKey(s.charAt(i))){
+            char ch = s.charAt(i);
+
+            while (has.containsKey(ch)) {
                 has.remove(s.charAt(left));
                 left++;
             }
-            has.put(s.charAt(i),1);
-            ans=Math.max(ans,i-left+1);
+
+            has.put(ch, 1);
+            ans = Math.max(ans, i - left + 1);
         }   
         return ans;                                
     }
