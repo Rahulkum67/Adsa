@@ -7,15 +7,23 @@ class Solution {
         //     }
         // }
         // return false;
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            if(map.containsKey(nums[i])){
-                if(map.get(nums[i])>1){
-                    return true;
-                }
+        // HashMap<Integer,Integer> map=new HashMap<>();
+        // for(int i=0;i<nums.length;i++){
+        //     if(map.containsKey(nums[i])){
+        //         if(map.get(nums[i])>1){
+        //             return true;
+        //         }
                 
+        //     }
+        //     map.put(nums[i],map.getOrDefault(nums[i],1)+1);
+        // }
+        // return false;
+        HashSet<Integer> set=new HashSet<>();
+        for(int ar:nums){
+            if(set.contains(ar)){
+                return true;
             }
-            map.put(nums[i],map.getOrDefault(nums[i],1)+1);
+            set.add(ar);
         }
         return false;
     }
