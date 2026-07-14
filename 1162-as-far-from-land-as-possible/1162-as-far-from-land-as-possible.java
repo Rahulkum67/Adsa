@@ -7,10 +7,8 @@ class Solution {
             this.col=col;
         }
     }
-    int[] rd={-1,1,0,0};
-    int[] cd={0,0,-1,1};
-    boolean isvalid(int x,int y,int n){
-        return (x>=0 && x<n && y>=0 && y<n);
+    boolean isvalid(int x,int y,int n,int m){
+        return (x>=0 && y>=0 && x<n && y<m);
     }
     public int maxDistance(int[][] grid) {
         int n=grid.length;
@@ -22,25 +20,27 @@ class Solution {
                 }
             }
         }
-        if(q.isEmpty() || q.size() == n*n) return -1;
-        int dis=-1;
+        if(q.isEmpty()|| q.size()==n*n) return -1;
+        int dist=-1;
+        int[] rd={-1,1,0,0};
+        int[] cd={0,0,-1,1};
         while(!q.isEmpty()){
             int size=q.size();
-            dis++;
+            dist++;
             for(int i=0;i<size;i++){
-                Pair curr=q.poll();
-                int r=curr.row;
-                int c=curr.col;
+                Pair cur=q.poll();
+                int cpr=cur.row;
+                int cpc=cur.col;
                 for(int j=0;j<4;j++){
-                    int nr= r+rd[j];
-                    int nc= c+cd[j];
-                    if(isvalid(nr,nc,n) && grid[nr][nc]==0){
-                        grid[nr][nc] = 1;
+                    int nr=cpr+rd[j];
+                    int nc=cpc+cd[j];
+                    if(isvalid(nr,nc,n,n) && grid[nr][nc]==0){
+                        grid[nr][nc]=1;
                         q.add(new Pair(nr,nc));
                     }
                 }
             }
         }
-        return dis;
+        return dist;
     }
 }
