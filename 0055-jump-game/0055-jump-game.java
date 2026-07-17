@@ -1,12 +1,12 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        int fastest=0;
+        int maxreach=0;
         for(int i=0;i<nums.length;i++){
-            if(i>fastest){
+            if(i>maxreach){
                 return false;
             }
-            fastest=Math.max(fastest,i+nums[i]);
-            if(fastest>=nums.length-1){
+            maxreach=Math.max(maxreach,i+nums[i]);
+            if(maxreach==nums.length-1){
                 return true;
             }
         }
