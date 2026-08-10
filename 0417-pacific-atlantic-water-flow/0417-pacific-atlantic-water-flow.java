@@ -1,7 +1,4 @@
-import java.util.*;
-
 class Solution {
-
     class Pair {
         int r, c;
         Pair(int r, int c) {
@@ -10,69 +7,59 @@ class Solution {
         }
     }
 
-    int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
-    int m, n;
-
-    public List<List<Integer>> pacificAtlantic(int[][] heights) {
-        m = heights.length;
-        n = heights[0].length;
-
-        boolean[][] pacific = new boolean[m][n];
-        boolean[][] atlantic = new boolean[m][n];
-
-        Queue<Pair> pq = new LinkedList<>();
-        Queue<Pair> aq = new LinkedList<>();
-
-        // Pacific borders (top row & left column)
-        for (int i = 0; i < m; i++) {
-            pq.offer(new Pair(i, 0));
-            pacific[i][0] = true;
+    int rd[]={-1,1,0,0};
+    int cd[]={0,0,-1,1};
+    boolean isvalid(int x,int y,int n,int m){
+        return (x>=0 && x<n && y>=0 && y<m);
+    }
+    void bfs(int[][] arr,Queue<Pair> q,boolean[][] isvisted){
+        while(!q.isEmpty()){
+            Pair curr=q.poll();
+            int cpr=curr.r;
+            int cpc=curr.c;
+            for(int i=0;i<4;i++){
+                int nr=cpr+rd[i];
+                int nc=cpc+cd[i];
+                if(isvalid(nr,nc,arr.length,arr[0].length) && arr[nr][nc]>=arr[cpr][cpc] && isvisted[nr][nc]==false){
+                    isvisted[nr][nc]=true;
+                    q.add(new Pair(nr,nc));
+                }
+            }
         }
-        for (int j = 0; j < n; j++) {
-            pq.offer(new Pair(0, j));
-            pacific[0][j] = true;
+    }
+    public List<List<Integer>> pacificAtlantic(int[][] arr) {
+        List<List<Integer>> ans=new ArrayList<>();
+        int n=arr.length;
+        int m=arr[0].length;
+        boolean[][] isvistedp=new boolean[n][m];
+        boolean[][] isvisteda=new boolean[n][m];
+        Queue<Pair> pq=new LinkedList<>();
+        Queue<Pair> aq=new LinkedList<>();
+        for(int i=0;i<n;i++){
+            pq.add(new Pair(i,0));
+            isvistedp[i][0]=true;
         }
-
-        // Atlantic borders (bottom row & right column)
-        for (int i = 0; i < m; i++) {
-            aq.offer(new Pair(i, n - 1));
-            atlantic[i][n - 1] = true;
+        for(int i=0;i<m;i++){
+            pq.add(new Pair(0,i));
+            isvistedp[0][i]=true;
         }
-        for (int j = 0; j < n; j++) {
-            aq.offer(new Pair(m - 1, j));
-            atlantic[m - 1][j] = true;
+        for(int i=0;i<n;i++){
+            aq.add(new Pair(i,m-1));
+            isvisteda[i][m-1]=true;
         }
-
-        bfs(heights, pq, pacific);
-        bfs(heights, aq, atlantic);
-
-        // Result
-        List<List<Integer>> ans = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (pacific[i][j] && atlantic[i][j]) {
-                    ans.add(Arrays.asList(i, j));
+        for(int i=0;i<m;i++){
+            aq.add(new Pair(n-1,i));
+            isvisteda[n-1][i]=true;
+        }
+        bfs(arr,pq,isvistedp);
+        bfs(arr,aq,isvisteda);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(isvistedp[i][j] && isvisteda[i][j]){
+                    ans.add(Arrays.asList(i,j));
                 }
             }
         }
         return ans;
-    }
-
-    private void bfs(int[][] heights, Queue<Pair> q, boolean[][] visited) {
-        while (!q.isEmpty()) {
-            Pair cur = q.poll();
-
-            for (int[] d : dirs) {
-                int nr = cur.r + d[0];
-                int nc = cur.c + d[1];
-
-                if (nr < 0 || nc < 0 || nr >= m || nc >= n) continue;
-                if (visited[nr][nc]) continue;
-                if (heights[nr][nc] < heights[cur.r][cur.c]) continue;
-
-                visited[nr][nc] = true;
-                q.offer(new Pair(nr, nc));
-            }
-        }
     }
 }
