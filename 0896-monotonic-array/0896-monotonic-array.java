@@ -6,12 +6,15 @@ class Solution {
             if(nums[i]<nums[i-1]){
                 inc=false;
             }
-        }
-        for(int i=nums.length-2;i>=0;i--){
-            if(nums[i]<nums[i+1]){
+            if(nums[i]>nums[i-1]){
                 dec=false;
             }
         }
+        // for(int i=nums.length-2;i>=0;i--){
+        //     if(nums[i]<nums[i+1]){
+        //         dec=false;
+        //     }
+        // }
         if(inc==true || dec==true){
             return true;
         }
